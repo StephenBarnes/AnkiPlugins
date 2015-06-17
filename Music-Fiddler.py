@@ -24,9 +24,9 @@ def resetMusicTimer():
     #Eg, when using the deck "brainscience", volume will decrement every 5 seconds. When using a deck without a listed name, "other" is used.
     #Change this according to your decks. Decks with shorter, easier cards need less time.
     deckMusicTimes = {
-                 "genx"   :   3000,
-                 "MASTER" : 1000,
-                 "other"  :   2000,
+                 "brainscience"  :   5000,
+                 "rocketsurgery" :   3000,
+                 "other"         :   2000,
                  }
     if mw.col.decks.current()['name'] in deckMusicTimes:
         mw.musicTimeToDecrement = deckMusicTimes[mw.col.decks.current()['name']]
@@ -56,7 +56,7 @@ def killMusicVolume():
 
 def decrementMusicVolume():
     "When reviewing, decrements volume, then sets a timer to call itself. When not reviewing, kills volume and stops timer."
-    if True: #mw.state == "review":
+    if mw.state == "review":
         #showInfo("music volume goes down") #To test changes, you can uncomment this line.
         changeMusicVolume("2%-") #CHANGEME if you prefer smaller or bigger volume jumps.
         mw.musicTimer.start(mw.musicTimeToDecrement) #(start the timer again)
